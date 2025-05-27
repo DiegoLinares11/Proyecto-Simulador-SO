@@ -1,0 +1,5 @@
+# Archivo de recursos para simulación de sincronización
+# Formato: Nombre del Recurso, Contador
+R1, 1
+R2, 2
+R3, 1
