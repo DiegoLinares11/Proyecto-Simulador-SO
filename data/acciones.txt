@@ -1,4 +1,3 @@
-# Archivo de acciones para simulación de sincronización
 # Formato: PID, Acción (READ/WRITE), Recurso, Ciclo
 P1, READ, R1, 0
 P2, WRITE, R1, 1

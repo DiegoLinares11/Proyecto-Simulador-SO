@@ -40,7 +40,7 @@ class SchedulingAlgorithm:
                 current_time = min(p.arrival_time for p in processes_copy if p.completion_time is None)
                 continue
             
-            # Select shortest job
+            # Selecciona   el proceso con el menor tiempo de ráfaga
             selected = min(available, key=lambda p: p.burst_time)
             selected.start_time = current_time
             selected.completion_time = current_time + selected.burst_time
@@ -69,10 +69,10 @@ class SchedulingAlgorithm:
                 current_time = min(p.arrival_time for p in processes_copy if p.completion_time is None)
                 continue
             
-            # Select process with shortest remaining time
+            # Selecciona el proceso con el menor tiempo restante
             selected = min(available, key=lambda p: p.remaining_time)
             
-            # Find next arrival time or completion
+            # Encuentra el tiempo de ejecución hasta el próximo evento
             next_event = float('inf')
             for p in processes_copy:
                 if p.arrival_time > current_time:
@@ -104,14 +104,14 @@ class SchedulingAlgorithm:
         completed = 0
         n = len(processes_copy)
         
-        # Add processes that arrive at time 0
+        # Agregar procesos que llegan al tiempo 0 a la cola lista
         for p in processes_copy:
             if p.arrival_time == 0:
                 ready_queue.append(p)
         
         while completed < n:
             if not ready_queue:
-                # Find next process to arrive
+                # Encuentra el próximo proceso que llegue
                 next_process = min([p for p in processes_copy if p.completion_time is None], 
                                  key=lambda p: p.arrival_time)
                 current_time = next_process.arrival_time
@@ -124,7 +124,7 @@ class SchedulingAlgorithm:
             current_process.remaining_time -= execution_time
             current_time += execution_time
             
-            # Add newly arrived processes
+            # Agregar procesos que llegan al tiempo actual a la cola lista
             for p in processes_copy:
                 if p.arrival_time <= current_time and p not in ready_queue and p.completion_time is None and p != current_process:
                     ready_queue.append(p)
@@ -155,7 +155,7 @@ class SchedulingAlgorithm:
                 current_time = min(p.arrival_time for p in processes_copy if p.completion_time is None)
                 continue
             
-            # Select highest priority process (lowest priority number)
+            # Selecciona el proceso con la mayor prioridad (menor número)
             selected = min(available, key=lambda p: p.priority)
             selected.start_time = current_time
             selected.completion_time = current_time + selected.burst_time

@@ -38,6 +38,6 @@ class Resource:
 @dataclass
 class Action:
     pid: str
-    action_type: str  # READ or WRITE
+    action_type: str  # Leer o escribir
     resource: str
     cycle: int

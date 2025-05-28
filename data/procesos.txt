@@ -1,4 +1,3 @@
-# Archivo de procesos para simulación de calendarización
 # Formato: PID, Burst Time, Arrival Time, Priority
 P1, 8, 0, 1
 P2, 4, 1, 3

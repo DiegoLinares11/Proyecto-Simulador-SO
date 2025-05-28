@@ -11,39 +11,39 @@ class SynchronizationSimulator:
         self.timeline = []
         self.current_cycle = 0
         
-    def simulate(self) -> List[Tuple[str, int, str, str]]:  # (pid, cycle, action, state)
+    def simulate(self) -> List[Tuple[str, int, str, str]]:  # (pid, ciclo, accion, Estado)
         """Simulate synchronization mechanism"""
-        waiting_processes = {}  # pid -> (action, resource, start_cycle)
+        waiting_processes = {}  # pid -> (accion, recurso, ciclo)
         
         for action in self.actions:
             self.current_cycle = action.cycle
             resource = self.resources[action.resource]
             
             if action.pid in waiting_processes:
-                # Process was waiting, check if it can proceed now
+                # Proceso esperando por un recurso
                 continue
             
             if self.sync_type == "mutex":
                 if resource.counter > 0:
-                    # Resource available
+                    # Recurso disponible
                     resource.counter -= 1
                     self.timeline.append((action.pid, action.cycle, action.action_type, "ACCESSED"))
-                    # Release resource after 1 cycle
+                    # Liberar el recurso después de usarlo (simplificado)
                     resource.counter += 1
                 else:
-                    # Resource busy, process must wait
+                    # Recurso ocupado, el proceso debe esperar
                     self.timeline.append((action.pid, action.cycle, action.action_type, "WAITING"))
                     waiting_processes[action.pid] = (action.action_type, action.resource, action.cycle)
             
             elif self.sync_type == "semaphore":
                 if resource.counter > 0:
-                    # Resource available
+                    # Recurso disponible
                     resource.counter -= 1
                     self.timeline.append((action.pid, action.cycle, action.action_type, "ACCESSED"))
-                    # Resource will be released after use (simplified)
+                    # Recurso se libera después de usarlo
                     resource.counter += 1
                 else:
-                    # All resources busy, process must wait
+                    # Todos los recursos ocupados, el proceso debe esperar
                     self.timeline.append((action.pid, action.cycle, action.action_type, "WAITING"))
                     waiting_processes[action.pid] = (action.action_type, action.resource, action.cycle)
         
