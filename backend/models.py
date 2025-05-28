@@ -29,10 +29,11 @@ class Process:
 class Resource:
     name: str
     counter: int
-    max_counter: int
+    max_counter: int = None
     
     def __post_init__(self):
-        self.max_counter = self.counter
+        if self.max_counter is None:
+            self.max_counter = self.counter
 
 @dataclass
 class Action:

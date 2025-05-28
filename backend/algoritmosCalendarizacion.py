@@ -9,7 +9,7 @@ class SchedulingAlgorithm:
         timeline = []
         ready_queue = sorted(processes, key=lambda p: p.arrival_time)
         current_time = 0
-        
+            
         for process in ready_queue:
             if current_time < process.arrival_time:
                 current_time = process.arrival_time
