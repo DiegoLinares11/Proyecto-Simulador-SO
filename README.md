@@ -1,5 +1,4 @@
 # Proyecto-Simulador-SO
-# Proyecto-Simulador-SO
 # Simulador de Planificación y Sincronización
 
 Este proyecto implementa un **simulador interactivo con interfaz gráfica en Python** que permite visualizar la ejecución de diferentes **algoritmos de planificación de procesos** y **mecanismos de sincronización**, simulando el comportamiento de un sistema operativo en un entorno educativo.
